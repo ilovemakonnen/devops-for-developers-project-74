@@ -2,14 +2,16 @@ version: "3.9"
 
 services:
   app:
-    build: .
     image: ilovemakonnen/devops-for-developers-project-74
-    container_name: js-fastify-blog-app
     ports:
       - "8081:8080"
     environment:
       NODE_ENV: production
-      DATABASE_URL: "postgres://postgres:password@db:5432/blog"
+      DB_HOST: db
+      DATABASE_NAME: blog
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_PORT: 5432
     depends_on:
       - db
 
