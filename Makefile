@@ -9,5 +9,6 @@ test:
 
 ci:
 	docker compose up -d db
+	docker compose run --rm app npm run migrate
 	docker compose run --rm app npm test
 	docker compose down -v
