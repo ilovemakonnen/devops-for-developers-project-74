@@ -11,6 +11,7 @@ test:
 	docker compose down -v
 
 ci:
+	chmod +x wait-for-db.sh
 	docker compose up -d db
 	./wait-for-db.sh db:5432
 	docker compose run --rm app npm run migrate
