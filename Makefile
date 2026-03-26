@@ -8,5 +8,4 @@ test:
 	docker compose run --rm app npm test
 
 ci:
-	docker compose build app
 	docker compose run --rm app npm test
