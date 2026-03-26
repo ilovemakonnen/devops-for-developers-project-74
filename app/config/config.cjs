@@ -7,7 +7,7 @@ module.exports = {
   },
   production: {
   dialect: 'postgres',
-  host: process.env.DB_HOST,                // обязательно имя сервиса
+  host: process.env.DB_HOST || 'db',                // обязательно имя сервиса
   port: 5432,                // или process.env.DATABASE_PORT, если она = 5432
   database: process.env.DATABASE_NAME || 'blog',
   username: process.env.DATABASE_USERNAME || 'postgres',
