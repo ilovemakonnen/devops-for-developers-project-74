@@ -8,6 +8,6 @@ test:
 	docker compose run --rm app npm test
 
 ci:
+	docker compose up -d db
 	docker compose run --rm app npm test
-	docker compose up --build --abort-on-container-exit
 	docker compose down -v
