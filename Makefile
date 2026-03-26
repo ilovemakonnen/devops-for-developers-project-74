@@ -12,6 +12,7 @@ test:
 
 ci:
 	docker compose up -d db
-	docker compose run --rm app sh -c "until pg_isready -h db -p 5432 -U postgres; do sleep 1; done && npm run migrate"
+	docker compose run --rm app sh -c "until nc -z db 5432; do sleep 1; done"
+	docker compose run --rm app npm run migrate
 	docker compose run --rm app npm test
 	docker compose down -v
