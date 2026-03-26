@@ -5,21 +5,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: make test
+    command: make dev
     depends_on:
-      - db
-    environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/blog
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
     expose:
       - "8080"
 
   db:
     image: postgres:15
-    container_name: js-fastify-blog-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: blog
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
