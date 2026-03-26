@@ -3,3 +3,5 @@ start:
 ci:
 	docker compose -f docker-compose.yml up --abort-on-container-exit
 	docker compose -f docker-compose.yml down --volumes --remove-orphans
+test:
+	npm test
