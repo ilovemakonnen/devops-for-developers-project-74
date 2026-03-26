@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: npm start
+    command: make test
     depends_on:
       - db
     environment:
