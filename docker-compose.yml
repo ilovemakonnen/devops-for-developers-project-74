@@ -2,29 +2,15 @@ version: "3.9"
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile.production
-    command: make dev
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - .env
-    expose:
-      - "8080"
-
-  db:
-    image: postgres:15
+    image: ilovemakonnen/devops-for-developers-project-74
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: blog
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      NODE_ENV: production
+      DATABASE_URL: postgres://postgres:password@db:5432/blog
 
-volumes:
-  pgdata:
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
