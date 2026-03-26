@@ -5,11 +5,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: make test
+    command: npm start
     depends_on:
       - db
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/blog
+    expose:
+      - "8080"
 
   db:
     image: postgres:15
