@@ -11,7 +11,7 @@ test:
 	docker compose down -v
 
 ci:
-	docker compose up -d db
+	docker compose up -d
 	docker compose exec app sh -c "NODE_ENV=test npm run migrate"
 	docker compose exec app sh -c "NODE_ENV=test npm test"
 	docker compose down -v
