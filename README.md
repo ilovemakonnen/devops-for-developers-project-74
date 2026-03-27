@@ -6,7 +6,6 @@
 - Node.js 20+
 - Docker
 - Docker Compose
-
 ## Запуск
 
 ### Dev
