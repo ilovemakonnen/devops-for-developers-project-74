@@ -12,7 +12,7 @@ test:
 
 ci:
 	docker compose up -d db
-	docker compose run --rm app bash -c 'until echo > /dev/tcp/db/5432 2>/dev/null; do sleep 1; done'
-	docker compose run --rm app npm run migrate
-	docker compose run --rm app npm test
+	docker compose up -d app
+	docker compose exec app npm run migrate
+	docker compose exec app npm test
 	docker compose down -v
