@@ -1,4 +1,5 @@
-setup: install db-migrate
+setup:
+	npm install
 
 install:
 	npm install
@@ -33,4 +34,7 @@ lint-fix:
 test:
 	NODE_ENV=test npm test -s
 ci:
-	docker-compose -f docker-compose.yml up --abort-on-container-exit
+	docker compose up -d
+	docker compose exec app sh -c "NODE_ENV=test npm run migrate"
+	docker compose exec app sh -c "NODE_ENV=test npm test"
+	docker compose down -v
